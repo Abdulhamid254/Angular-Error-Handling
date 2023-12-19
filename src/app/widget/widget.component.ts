@@ -28,14 +28,16 @@ export class WidgetComponent implements OnInit {
 
   addTask() {
     // unreliable method
-    ({} as any).someMethod();
+    // ({} as any).someMethod(); saple of an error we propergated
     //handling the error using the try catch block
     // try / catch construct only works with synchronous code
+    //the trcatch block alone doesnt make it to the global error handler
     try {
       this.widgetData.addTaskSync({ id: 0, title: 'New Task' });
     } catch (error) {
       if (error instanceof Error) {
         this.error = error;
+        throw error;  // with this line of code this trycatch is passed onto the global error handler
       }
     }
 
