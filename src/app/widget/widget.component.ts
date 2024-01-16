@@ -33,7 +33,11 @@ export class WidgetComponent implements OnInit {
     // try / catch construct only works with synchronous code
     //the trcatch block alone doesnt make it to the global error handler
     try {
-      this.widgetData.addTaskSync({ id: 0, title: 'New Task' });
+      //trying with an asynchronous code such as set timeout
+      setTimeout(() => {
+        this.widgetData.addTaskSync({ id: 0, title: 'New Task' });
+      })
+      // this.widgetData.addTaskSync({ id: 0, title: 'New Task' });
     } catch (error) {
       if (error instanceof Error) {
         this.error = error;
